@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->enum('type',['Persona Natural','Empresa'])->notNullable();
-            $table->string('First_Name', 50)->notNullable();
+            $table->string('Name', 50)->notNullable();
             $table->string('Last_Name', 50)->notNullable();
             $table->enum('Document_Type',['cc','TI','Pasaporte','Nit']);
             $table->string('Document_Number',20);
