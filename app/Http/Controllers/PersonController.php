@@ -12,7 +12,8 @@ class PersonController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   $person=person::all();
+    {
+        $person = Person::all();
         return view('dashboard.person.index',['person'=>$person]);
     }
 
@@ -21,32 +22,30 @@ class PersonController extends Controller
      */
     public function create()
     {
-        $person=person::all();
-        return view ('dashboard.person.create',['person'=>$person]);
+        $providers= person::where('type','Proveedor');
+        return view('dashboard.person.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|max:100',
-            
-        ]);
-      $person= new person();
-      $person->Name=$request->input('Name');
-      $person->Last_Name=$request->input('Last_Name');
-      $person->type=$request->input('type');
-      $person->Document_Number=$request->input('Document_Number');
-      $person->Document_Type=$request->input('Document_Type');
-      $person->Adress=$request->input('Adress');
-      $person->Email=$request->input('Email');
-      $person->Phone=$request->input('Phone');
-      $person->save();
-      return view("dashboard.person.message",['msg'=>"Persona creada con exito"]);
+{
 
-    }
+    $person = new Person();
+    $person->Name=$request->input('Name');
+    $person->Last_Name=$request->input('Last_Name');
+    $person->Document_Type=$request->input('Document_Type');
+    $person->Document_Number=$request->input('Document_Number');
+    $person->Adress = $request->input('Adress', '');
+    $person->Phone=$request->input('Phone');
+    $person->Email=$request->input('Email');
+    $person->save();
+
+    return view("dashboard.person.message",['msg'=>"Registro agregado con exito"]);
+}
+
+
 
     /**
      * Display the specified resource.
@@ -61,22 +60,42 @@ class PersonController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        {
+            $person = Person::findOrFail($id);
+            return view('dashboard.person.edit', compact('person'));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
-    }
+{
+    
+    $person = Person::findOrFail($id);
+
+    
+    $person->Name = $request->input('Name');
+    $person->Last_Name = $request->input('Last_Name');
+    $person->Document_Type = $request->input('Document_Type');
+    $person->Document_Number = $request->input('Document_Number');
+    $person->Adress = $request->input('Adress');
+    $person->Phone = $request->input('Phone');
+    $person->Email = $request->input('Email');
+    $person->save();
+    return view("dashboard.person.message",['msg'=>"Registro Actualizado con exito"]);
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $person = Person::findOrFail($id);
+    $person->delete();
+
+    return redirect()->route('person.index')->with('success', 'Persona eliminada correctamente.');
+
     }
 }

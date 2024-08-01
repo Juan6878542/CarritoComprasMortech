@@ -27,14 +27,26 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="url('dashboard/person')" :active="request()->routeIs('person')">
+                    <x-nav-link :href="url('dashboard/income')" :active="request()->routeIs('Income')">
+                        {{ __('Ingreso') }}
+                    </x-nav-link>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="url('dashboard/Income_detail')" :active="request()->routeIs('Income_detail')">
+                            {{ __('Detalle Ingreso') }}
+                        </x-nav-link>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="url('dashboard/person')" :active="request()->routeIs('Person')">
                         {{ __('Persona') }}
                     </x-nav-link>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="url('dashboard/Sale')" :active="request()->routeIs('Sale')">
+                            {{ __('Venta') }}
+                        </x-nav-link>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="url('dashboard/Sale_detail')" :active="request()->routeIs('Sale_detail')">
+                                {{ __('Detalle venta') }}
+                            </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="url('dashboard/income')" :active="request()->routeIs('Income')">
-                        {{ __('Ingresos') }}
-                    </x-nav-link>
                 </div>
             </div>
 
