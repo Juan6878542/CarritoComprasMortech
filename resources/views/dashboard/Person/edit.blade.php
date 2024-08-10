@@ -13,8 +13,8 @@
             <div class="form-group">
                 <label for="type">Selecciona una opción</label>
                 <select class="form-control" id="type" name="type" required>
-                    <option value="natural">Persona natural</option>
-                    <option value="empresa">Empresa</option>
+                    <option value="Persona natural">Persona natural</option>
+                    <option value="Empresa">Empresa</option>
                 </select>
             </div>
             <div class="form-group">

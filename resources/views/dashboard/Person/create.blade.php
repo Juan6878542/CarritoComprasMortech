@@ -14,7 +14,7 @@
                 <select class="form-control" name="type" id="type" required>
                     <option value="">Selecciona una opción</option>
                     <option value="natural">Personal natural</option>
-                    <option value="empresa">Empresa</option>
+                    <option value="Empresa">Empresa</option>
                 </select>
             </div>
         </div>

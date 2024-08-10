@@ -74,7 +74,7 @@ class PersonController extends Controller
     
     $person = Person::findOrFail($id);
 
-    
+    $person->type= $request->input('type');
     $person->Name = $request->input('Name');
     $person->Last_Name = $request->input('Last_Name');
     $person->Document_Type = $request->input('Document_Type');
