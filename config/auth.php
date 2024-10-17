@@ -64,8 +64,10 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+        Spatie\Permission\PermissionServiceProvider::class,
 
-        // 'users' => [
+
+
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],

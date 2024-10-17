@@ -64,16 +64,23 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $article= Article::find ($id);
-        $article->code=$request->input('code');
-        $article->name=$request->input('name');
-        $article->Sale_price=$request->input('Sale_Price');
-        $article->stock=$request->input('stock');
-        $article->description=$request->input('description');
-        $article->state=$request->input('state');
-        $article->idcategory=$request->input('category');
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|integer',
+            'state' => 'required',
+            'category_id' => 'required|integer',
+        ]);
+    
+        $article = Article::find($id);
+        $article->name = $request->input('name');
+        $article->price = $request->input('price');
+        $article->stock = $request->input('stock');
+        $article->state = $request->input('state');
+        $article->category_id = $request->input('category_id');
         $article->save();
-        return view("dashboard.article.message",['msg'=>"Articulo actualizado con Exito"]);
+    
+        return redirect('dashboard/article')->with('success', 'Artículo actualizado con éxito');
     }
 
     /**

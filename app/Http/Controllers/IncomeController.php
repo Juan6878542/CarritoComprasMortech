@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Income;
+
+
 
 class IncomeController extends Controller
 {
@@ -12,7 +14,8 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        //
+        $income= Income::all();
+        return view('dashboard.incomes.index',['incomes'=>$income]);
     }
 
     /**
@@ -20,15 +23,28 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        return view ('dashboard.incomes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
+    {  
+            // Crear un nuevo ingreso
+            $income = new Income;
+            $income->Provider_id = $request->input('Provider_id');
+            $income->User_id = $request->input('User_id');
+            $income->receipt_type = $request->input('receipt_type');
+            $income->receipt_series = $request->input('receipt_series');
+            $income->receipt_number = $request->input('receipt_number');
+            $income->date = $request->input('date');
+            $income->tax = $request->input('tax');
+            $income->total = $request->input('total');
+            $income->status = $request->input('status');
+            $income->save();
+        
+            return view("dashboard.incomes.message",['msg'=>"Registro agregado con exito"]);
     }
 
     /**
@@ -44,7 +60,8 @@ class IncomeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $income = Income::findOrFail($id);
+            return view('dashboard.incomes.edit', compact('income'));
     }
 
     /**
@@ -52,7 +69,23 @@ class IncomeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+            // Actualizar los datos del ingreso
+            $income = Income::findOrFail($id);
+
+            // Actualizar los datos del ingreso
+            $income->provider_id = $request->input('provider_id');
+            $income->user_id = $request->input('user_id');
+            $income->receipt_type = $request->input('receipt_type');
+            $income->receipt_series = $request->input('receipt_series');
+            $income->receipt_number = $request->input('receipt_number');
+            $income->date = $request->input('date');
+            $income->tax = $request->input('tax');
+            $income->total = $request->input('total');
+            $income->status = $request->input('status');
+            $income->save();
+        
+            return view("dashboard.incomes.message",['msg'=>"Registro Actualizado con exito"]);
     }
 
     /**
@@ -60,6 +93,13 @@ class IncomeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+    
+    // Obtener el ingreso por su ID
+    $income = Income::findOrFail($id);
+
+    // Eliminar el ingreso
+    $income->delete();
+
+    return redirect()->route('income.index')->with('success', 'Ingreso eliminado exitosamente');
     }
 }
