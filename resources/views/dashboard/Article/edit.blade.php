@@ -1,6 +1,9 @@
 @extends('dashboard.master')
-@section('titulo','Editar Artículo')
-@include('layouts/navigation')
+
+@section('titulo', 'Editar Artículo')
+
+@include('layouts.navigation')
+
 @section('contenido')
 <h1>Editar Artículo</h1>
 <div class="container py-4">
@@ -9,7 +12,7 @@
         @method('PUT')
         <div class="form-group">
             <label for="id">ID de Artículo</label>
-            <input type="text" class="form-control" id="id" name="id" value="{{ $article->id }}" readonly>
+            <input type="text" class="form-control" id="id" name="id" value="{{ $article->id }}" required>
         </div>
         <div class="form-group">
             <label for="product">Producto</label>
@@ -22,6 +25,10 @@
         <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $article->name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="Sale_Price">Precio de Venta</label>
+            <input type="number" class="form-control" id="Sale_Price" name="Sale_Price" value="{{ $article->sale_price }}" required>
         </div>
         <div class="form-group">
             <label for="stock">Stock</label>
@@ -42,7 +49,9 @@
             <label for="category">Categoría</label>
             <select class="form-control" id="category" name="category" required>
                 @foreach($category as $category)
-                    <option value="{{ $category->id }}" {{ $article->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ $article->category_id == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -51,3 +60,4 @@
     </form>
 </div>
 @endsection
+

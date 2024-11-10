@@ -33,7 +33,7 @@
                 <td>{{$article->Sale_Price}}</td>
                 <td>{{$article->stock}}</td>
                 <td>{{$article->description}}</td>
-                <td>{{$article->state ? ('activo') : ('inactivo') }}</td>
+                <td>{{$article->State ? ('activo') : ('inactivo') }}</td>
                 <td>{{$article->category->name}}</td>
                 <td>{{$article->created_at}}</td>
                 <td>{{$article->updated_at}}</td>

@@ -33,7 +33,7 @@ class ArticleController extends Controller
         $article= new Article();
         $article->code=$request->input('code');
         $article->name=$request->input('name');
-        $article->Sale_Price=$request->input('Sale_Price');
+        $article->Sale_Price=$request->input('Sale_price');
         $article->stock=$request->input('stock');
         $article->description=$request->input('description');
         $article->state=$request->input('state');
@@ -62,26 +62,25 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
-            'state' => 'required',
-            'category_id' => 'required|integer',
-        ]);
-    
-        $article = Article::find($id);
-        $article->name = $request->input('name');
-        $article->price = $request->input('price');
-        $article->stock = $request->input('stock');
-        $article->state = $request->input('state');
-        $article->category_id = $request->input('category_id');
-        $article->save();
-    
-        return redirect('dashboard/article')->with('success', 'Artículo actualizado con éxito');
-    }
+    public function update(Request $request, $id)
+{
+    // Obtener el artículo por su ID
+    $article = Article::findOrFail($id);
+
+    // Actualizar los datos del artículo
+    $article->code = $request->input('code');
+    $article->name = $request->input('name');
+    $article->Sale_Price = $request->input('Sale_Price');
+    $article->stock = $request->input('stock');
+    $article->description = $request->input('description');
+    $article->state = $request->input('state');
+    $article->idcategory = $request->input('category');
+
+    // Guardar los cambios
+    $article->save();
+
+    return view('dashboard.article.message', ['msg' => 'Artículo Actualizado con Éxito']);
+}
 
     /**
      * Remove the specified resource from storage.
