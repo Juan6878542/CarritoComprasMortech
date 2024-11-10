@@ -37,13 +37,13 @@
                 <td>{{ $income->total }}</td>
                 <td>{{ $income->status }}</td>
                 <td>
-                    <a href="{{ route('income.edit', $income->id) }}" class="bi bi-pencil-fill"></a>
+                    <a href="{{ route('income.edit', $income->id) }}" class="btn btn-warning btn-sm">Editar</a>
                 </td>
                 <td>
                     <form action="{{ route('income.destroy', $income->id) }}" method="post">
                         @method('DELETE')
                         @csrf
-                        <button class="bi bi-eraser-fill" type="submit"></button>
+                        <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
                     </form>
                 </td>
             </tr>

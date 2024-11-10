@@ -25,12 +25,12 @@
                 <td>{{$category->name}}</td>
                 <td>{{$category->description}}</td>
                 <td>{{$category->state?_('activo') : _('inactivo')}}</td>
-                <td><a href="{{url('dashboard/category/'.$category->id.'/edit')}}" class="bi bi-pencil-fill"></></td>
+                <td><a href="{{url('dashboard/category/'.$category->id.'/edit')}}" class="btn btn-warning btn-sm">Editar</a>
                 <td>
                  <form action= "{{ url('dashboard/category/'.$category->id) }}" method="post">
                      @method("DELETE")
                      @csrf
-                     <button class="bi bi-eraser-fill" type="submit"></button>
+                     <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
                  </form>
             </td>
         </tr>

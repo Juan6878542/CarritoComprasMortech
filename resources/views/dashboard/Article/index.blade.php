@@ -38,13 +38,14 @@
                 <td>{{$article->created_at}}</td>
                 <td>{{$article->updated_at}}</td>
                 <td>
-                    <a href="{{url('dashboard/article/'.$article->id.'/edit')}}" class="bi bi-pencil-fill">
+                    <a href="{{url('dashboard/article/'.$article->id.'/edit')}}" class="btn btn-warning btn-sm">Editar</a>
                 </td>
                 <td>
                     <form action= "{{ url('dashboard/article/'.$article->id) }}" method="post">
                         @method("DELETE")
                         @csrf
-                        <button class="bi bi-eraser-fill" type="submit"></button>
+                        <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
+                        </form>
                     </form>
                 </td>
 

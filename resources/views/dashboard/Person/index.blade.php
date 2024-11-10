@@ -38,13 +38,13 @@
                     <td>{{ $person->Phone }}</td>
                     <td>{{ $person->Email }}</td>
                     <td>
-                        <a href="{{ route('person.edit', $person->id) }}" class="bi bi-pencil-fill"></a>
+                        <a href="{{ route('person.edit', $person->id) }}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
                     <td>
                         <form action="{{ route('person.destroy', $person->id) }}" method="post">
                             @method('DELETE')
                             @csrf
-                            <button class="bi bi-eraser-fill" type="submit"></button>
+                            <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
                         </form>
                     </td>
                 </tr>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Income_detail;
 use Illuminate\Http\Request;
+
+
 
 class Income_detailController extends Controller
 {
@@ -12,7 +15,9 @@ class Income_detailController extends Controller
      */
     public function index()
     {
-        //
+        $income_details= Income_detail::all();
+        return view('dashboard.income_details.index', ['income_details' => $income_details]);
+
     }
 
     /**
@@ -20,7 +25,7 @@ class Income_detailController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.income_details.create');
     }
 
     /**
@@ -28,7 +33,8 @@ class Income_detailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $income_details = new Income_detail(); $income_details->income_id = $request->income_id; $income_details->article_id = $request->article_id; $income_details->quantity = $request->quantity; $income_details->price = $request->price; $income_details->save();
+        return view("dashboard.income_details.message",['msg'=>"ingreso detalle creado con exito"]);
     }
 
     /**
@@ -44,7 +50,9 @@ class Income_detailController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $income_details = Income_detail::find($id); 
+        return view('dashboard.income_details.edit', compact('income_details'));
+        
     }
 
     /**
@@ -52,7 +60,8 @@ class Income_detailController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $incomeDetail = Income_Detail::find($id); $incomeDetail->update($request->all()); 
+        return redirect()->route('income_detail.index');
     }
 
     /**
@@ -60,6 +69,7 @@ class Income_detailController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $incomeDetail = Income_Detail::find($id); $incomeDetail->delete(); 
+        return redirect()->route('income_detail.index');
     }
 }

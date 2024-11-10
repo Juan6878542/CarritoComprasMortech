@@ -31,7 +31,7 @@
                         {{ __('Ingreso') }}
                     </x-nav-link>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="url('dashboard/Income_detail')" :active="request()->routeIs('Income_detail')">
+                        <x-nav-link :href="url('dashboard/income_details')" :active="request()->routeIs('income_details')">
                             {{ __('Detalle Ingreso') }}
                         </x-nav-link>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -43,7 +43,7 @@
                             {{ __('Venta') }}
                         </x-nav-link>
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="url('dashboard/Sale_detail')" :active="request()->routeIs('Sale_detail')">
+                            <x-nav-link :href="url('dashboard/sales_details')" :active="request()->routeIs('sales_details')">
                                 {{ __('Detalle venta') }}
                             </x-nav-link>
                 </div>

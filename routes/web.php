@@ -27,11 +27,11 @@ Route::middleware('auth')->group(function () {
 //Rutas de nuestra app
 route::resource('/dashboard/article',ArticleController::Class);
 route::resource('/dashboard/category',CategoryController::Class);
-//route::resource('/dashboard/income',Income_detailController::Class);
+route::resource('/dashboard/income_details',Income_detailController::Class);
 route::resource('/dashboard/income',IncomeController::Class);
 route::resource('/dashboard/person',PersonController::Class);
-//route::resource('/dashboard/article',Sale_DetailController::Class);
-//route::resource('/dashboard/article',SaleController::Class);
+route::resource('/dashboard/sales_details',Sale_DetailController::Class);
+route::resource('/dashboard/Sale',SaleController::Class);
 });
 
 

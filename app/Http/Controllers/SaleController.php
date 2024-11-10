@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -12,7 +13,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::all();
+        return view('dashboard.Sale.index', ['sales' => $sales]);
     }
 
     /**
@@ -20,7 +22,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.Sale.create');  
     }
 
     /**
@@ -28,7 +30,21 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $sale = new Sale();
+        $sale->client_id = $request->Client_id;
+        $sale->user_id = $request->User_id;
+        $sale->receipt_type = $request->receipt_type;
+        $sale->receipt_series = $request->receipt_series;
+        $sale->receipt_number = $request->receipt_number;
+        $sale->tax = $request->tax;
+        $sale->total = $request->total;
+        $sale->status = $request->status;
+
+        $sale->save();
+        return redirect()->route('Sale.index')->with('success', 'Venta creada con éxito');
+    
+
     }
 
     /**
@@ -44,7 +60,8 @@ class SaleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $sale = Sale::find($id);
+        return view('dashboard.Sale.edit', compact('sale'));
     }
 
     /**
@@ -52,7 +69,21 @@ class SaleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $sale = Sale::findOrFail($id);
+
+    
+        $sale->client_id = $request->Client_id;
+        $sale->user_id = $request->User_id;
+        $sale->receipt_type = $request->receipt_type;
+        $sale->receipt_series = $request->receipt_series;
+        $sale->receipt_number = $request->receipt_number;
+        $sale->tax = $request->tax;
+        $sale->total = $request->total;
+        $sale->status = $request->status;
+
+       
+        $sale->save();
+        return redirect()->route('Sale.index')->with('success', 'Venta actualizada con éxito');
     }
 
     /**
@@ -60,6 +91,7 @@ class SaleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sale = Sale::find($id); $sale->delete();
+        return redirect()->route('Sale.index')->with('success', 'Venta borrada con éxito');
     }
 }
