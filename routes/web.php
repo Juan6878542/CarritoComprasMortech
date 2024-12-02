@@ -10,7 +10,8 @@ use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\Sale_detailController;
 use App\Http\Controllers\SaleController;
-
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +33,8 @@ route::resource('/dashboard/income',IncomeController::Class);
 route::resource('/dashboard/person',PersonController::Class);
 route::resource('/dashboard/sales_details',Sale_DetailController::Class);
 route::resource('/dashboard/Sale',SaleController::Class);
+route::resource('/dashboard/role',RoleController::Class);
+route::resource('/dashboard/usuario',UsuarioController::Class);
 });
 
 

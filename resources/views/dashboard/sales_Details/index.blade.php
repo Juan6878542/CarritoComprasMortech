@@ -21,7 +21,7 @@
                     <th>Cliente ID</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
-                    <th>Fecha</th>
+                    <th>Descuento</th>
                     <th>Editar</th>
                     <th>Borrar</th>
                 </tr>
@@ -34,7 +34,7 @@
                     <td>{{ $sale->article_id }}</td>
                     <td>{{ $sale->quantity }}</td>
                     <td>{{ $sale->price }}</td>
-                    <td>{{ $sale->sale_date }}</td>
+                    <td>{{ $sale->discount }}</td>
                     <td>
                         <a href="{{ route('sales_details.edit', $sale->id) }}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
