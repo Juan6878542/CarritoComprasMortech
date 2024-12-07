@@ -4,21 +4,23 @@
 
 @include('layouts.navigation')
 
+@section('contenido')
 <main>
     <div class="container mt-4">
         <h1 class="mb-4">Detalles de Ventas</h1>
         <a href="{{ route('sales_details.create') }}" class="btn btn-success mb-3">Nuevo Registro</a>
+        
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
+        
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Producto ID</th>
-                    <th>Cliente ID</th>
+                    <th>Artículo ID</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
                     <th>Descuento</th>
@@ -30,11 +32,10 @@
                 @foreach($sales_details as $sale)
                 <tr>
                     <td>{{ $sale->id }}</td>
-                    <td>{{ $sale->sale_id }}</td>
                     <td>{{ $sale->article_id }}</td>
                     <td>{{ $sale->quantity }}</td>
-                    <td>{{ $sale->price }}</td>
-                    <td>{{ $sale->discount }}</td>
+                    <td>{{ number_format($sale->price, 2) }}</td>
+                    <td>{{ number_format($sale->discount, 2) }}</td>
                     <td>
                         <a href="{{ route('sales_details.edit', $sale->id) }}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
@@ -51,3 +52,4 @@
         </table>
     </div>
 </main>
+@endsection

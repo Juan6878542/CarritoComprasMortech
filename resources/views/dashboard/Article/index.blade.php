@@ -1,25 +1,27 @@
 @extends('dashboard.master')
-@section('titulo','Articulos')
-@include('layouts/navigation')
-@section('contenido')
 
+@section('titulo', 'Artículos')
+
+@include('layouts.navigation')
+
+@section('contenido')
 <div class="container py-4">
-    <h1>Listado de Articulos</h1>
+    <h1>Listado de Artículos</h1>
     <br>
-    <a href="{{url('dashboard/article/create')}}" class="btn btn-primary btn-sm"> Nuevo articulo</a>
-    <table class="table table-dark tabl-striped">
+    <a href="{{ url('dashboard/article/create') }}" class="btn btn-success"> Nuevo artículo</a>
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>Id Producto</th>
-                <th>Codigo</th>
+                <th>Código</th>
                 <th>Nombre</th>
                 <th>Precio de Venta</th>
                 <th>Stock</th>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <th>Estado</th>
-                <th>categoria</th>
-                <th>Fecha Creacion</th>
-                <th>Fecha Actualizacion</th>
+                <th>Categoría</th>
+                <th>Fecha Creación</th>
+                <th>Fecha Actualización</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -27,39 +29,29 @@
         <tbody>
             @foreach($article as $article)
             <tr>
-                <td scope="row">{{$article->id}}</td>
-                <td>{{$article->code}}</td>
-                <td>{{$article->name}}</td>
-                <td>{{$article->Sale_Price}}</td>
-                <td>{{$article->stock}}</td>
-                <td>{{$article->description}}</td>
-                <td>{{$article->State ? ('activo') : ('inactivo') }}</td>
-                <td>{{$article->category->name}}</td>
-                <td>{{$article->created_at}}</td>
-                <td>{{$article->updated_at}}</td>
+                <td scope="row">{{ $article->id }}</td>
+                <td>{{ $article->code }}</td>
+                <td>{{ $article->name }}</td>
+                <td>{{ $article->Sale_Price }}</td>
+                <td>{{ $article->stock }}</td>
+                <td>{{ $article->description }}</td>
+                <td>{{ $article->State ? 'activo' : 'inactivo' }}</td>
+                <td>{{ $article->category->name }}</td>
+                <td>{{ $article->created_at }}</td>
+                <td>{{ $article->updated_at }}</td>
                 <td>
-                    <a href="{{url('dashboard/article/'.$article->id.'/edit')}}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{{ url('dashboard/article/' . $article->id . '/edit') }}" class="btn btn-warning btn-sm">Editar</a>
                 </td>
                 <td>
-                    <form action= "{{ url('dashboard/article/'.$article->id) }}" method="post">
-                        @method("DELETE")
+                    <form action="{{ url('dashboard/article/' . $article->id) }}" method="POST">
+                        @method('DELETE')
                         @csrf
                         <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
-                        </form>
                     </form>
                 </td>
-
-            </tr>
-            <tr>
-                <td scope="row"></td>
-                <td></td>
-                <td></td>
             </tr>
             @endforeach
         </tbody>
     </table>
-
-
-
 </div>
 @endsection

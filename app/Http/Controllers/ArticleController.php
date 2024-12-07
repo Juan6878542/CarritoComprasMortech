@@ -67,7 +67,6 @@ class ArticleController extends Controller
     // Obtener el artículo por su ID
     $article = Article::findOrFail($id);
 
-    // Actualizar los datos del artículo
     $article->code = $request->input('code');
     $article->name = $request->input('name');
     $article->Sale_Price = $request->input('Sale_Price');
@@ -76,7 +75,6 @@ class ArticleController extends Controller
     $article->state = $request->input('state');
     $article->idcategory = $request->input('category');
 
-    // Guardar los cambios
     $article->save();
 
     return view('dashboard.article.message', ['msg' => 'Artículo Actualizado con Éxito']);

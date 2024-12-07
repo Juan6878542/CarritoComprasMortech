@@ -73,20 +73,9 @@ class Sale_detailController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $sale = Sale::find($id);
-
-        
-        if ($sale) {
-            
-            return view('sales.edit', compact('sale'));
-        } else {
-           
-            return redirect()->route('sales.index')->with('error', 'Venta no encontrada.');
-        }
-        
-        $request->validate([ 'product_id' => 'required|exists:products,id', 'customer_id' => 'required|exists:customers,id', 'quantity' => 'required|integer|min:1', 'price' => 'required|numeric|min:0', 'sale_date' => 'required|date',]);
-        $sales_details = Sale_detail::find($id); $sales_details->update([ 'product_id' => $request->product_id, 'customer_id' => $request->customer_id, 'quantity' => $request->quantity, 'price' => $request->price, 'sale_date' => $request->sale_date, ]);
-        return redirect()->route('dashboard.sales_details.index')->with('success', 'Detalle de venta actualizado exitosamente.');
+        $sales_details = Sale_detail::find($id);
+        $sales_details->update([ 'article_id' => $request->product_id, 'quantity' => $request->quantity, 'price' => $request->price, ]);
+        return redirect()->route('sales_details.index')->with('success', 'Detalle de venta actualizado exitosamente.');
         
     }
 

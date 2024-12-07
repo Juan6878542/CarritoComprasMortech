@@ -1,6 +1,9 @@
 @extends('dashboard.master')
-@section('titulo','Nueva Categoria')
-@include('layouts/navigation')
+
+@section('titulo', 'Nueva Categoría')
+
+@include('layouts.navigation')
+
 @section('contenido')
 <div class="container py-4">
     <form action="{{ route('category.store') }}" method="post">
@@ -8,21 +11,21 @@
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Nombre</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="name" id="name" placeholder="Ingresa el Nombre de la Categoría">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Ingresa el nombre de la Categoría" required>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="description" class="col-sm-2 col-form-label">Descripción</label>
             <div class="col-sm-10">
-                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="description" rows="3" placeholder="Ingresa la descripción de la Categoría" required></textarea>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="state" class="col-sm-2 col-form-label">Estado</label>
             <div class="col-sm-10">
-                <select class="form-control" name="state" id="state">
+                <select class="form-control" name="state" id="state" required>
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
@@ -37,3 +40,4 @@
         </div>
     </form>
 </div>
+@endsection

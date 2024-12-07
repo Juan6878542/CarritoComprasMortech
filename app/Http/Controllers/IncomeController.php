@@ -31,7 +31,6 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {  
-            // Crear un nuevo ingreso
             $income = new Income;
             $income->Provider_id = $request->input('Provider_id');
             $income->User_id = $request->input('User_id');
@@ -70,10 +69,8 @@ class IncomeController extends Controller
     public function update(Request $request, string $id)
     {
         
-            // Actualizar los datos del ingreso
             $income = Income::findOrFail($id);
 
-            // Actualizar los datos del ingreso
             $income->provider_id = $request->input('provider_id');
             $income->user_id = $request->input('user_id');
             $income->receipt_type = $request->input('receipt_type');
@@ -94,10 +91,8 @@ class IncomeController extends Controller
     public function destroy(string $id)
     {
     
-    // Obtener el ingreso por su ID
     $income = Income::findOrFail($id);
 
-    // Eliminar el ingreso
     $income->delete();
 
     return redirect()->route('income.index')->with('success', 'Ingreso eliminado exitosamente');

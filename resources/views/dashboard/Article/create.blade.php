@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 
-@section('titulo', 'Nuevo Articulo')
+@section('titulo', 'Nuevo Artículo')
 
 @include('layouts.navigation')
 
@@ -26,7 +26,7 @@
                 <select class="form-control" name="category" id="category" required>
                     <option value="">Seleccionar categoría</option>
                     @foreach($category as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -61,7 +61,7 @@
         <div class="form-group row">
             <div class="col-sm-10 offset-sm-2">
                 <button type="submit" class="btn btn-success">Registrar</button>
-                <a href="{{ url('dashboard/category') }}" class="btn btn-secondary">Regresar</a>
+                <a href="{{ url('dashboard/article') }}" class="btn btn-secondary">Regresar</a>
             </div>
         </div>
     </form>

@@ -5,35 +5,33 @@
         </h2>
     </x-slot>
 
-    <form action="{{ route('role.update', $role->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div>
-            <label for="name">Nombre del Rol</label>
-            <div>
-                <input type="text" name="name" id="name" value="{{ $role->name }}">
+    <div class="container py-4">
+        <form action="{{ route('role.update', $role->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group mb-3">
+                <label for="name" class="form-label">Nombre del Rol</label>
+                <input type="text" class="form-control" name="name" id="name" value="{{ $role->name }}" required>
             </div>
-        </div>
-        <div>
-            <label for="permissions">Permisos del Rol</label>
-        </div>
-        <div>
-            <table>
-                <tbody>
-                    @foreach($permission as $id => $permission)
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="permissions[]" value="{{ $id }}" {{ $role->permissions->contains($id) ? 'checked' : '' }}>
-                        </td>
-                        <td>{{ $permission }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <button class="btn btn-primary">Guardar</button>
-            <a href="{{ url('dashboard/role') }}">Cancelar</a>
-        </div>
-    </form>
+            <div class="form-group mb-3">
+                <label for="permissions" class="form-label">Permisos del Rol</label>
+                <table class="table table-bordered">
+                    <tbody>
+                        @foreach($permission as $id => $permission)
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="permissions[]" value="{{ $id }}" {{ $role->permissions->contains($id) ? 'checked' : '' }}>
+                            </td>
+                            <td>{{ $permission }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group mb-3">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{{ url('dashboard/role') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
 </x-app-layout>

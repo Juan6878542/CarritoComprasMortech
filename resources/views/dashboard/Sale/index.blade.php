@@ -6,7 +6,8 @@
 
 <main>
     <div class="container mt-4">
-        <h1 class="text-center">Listado de Ventas</h1>
+        <h1>Listado de Ventas</h1>
+        <br>
         <div class="text-right mb-3">
             <a href="{{ route('Sale.create') }}" class="btn btn-success">Nuevo Registro</a>
         </div>

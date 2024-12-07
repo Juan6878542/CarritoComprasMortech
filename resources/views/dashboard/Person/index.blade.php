@@ -4,8 +4,9 @@
 
 @include('layouts.navigation')
 
+@section('contenido')
 <main>
-    <div>
+    <div class="container py-4">
         <h1>Listado de Personas</h1>
         <br>
         <a href="{{ route('person.create') }}" class="btn btn-success">Nuevo Registro</a>
@@ -41,7 +42,7 @@
                         <a href="{{ route('person.edit', $person->id) }}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
                     <td>
-                        <form action="{{ route('person.destroy', $person->id) }}" method="post">
+                        <form action="{{ route('person.destroy', $person->id) }}" method="post" style="display:inline;">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
@@ -51,3 +52,6 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+</main>
+@endsection

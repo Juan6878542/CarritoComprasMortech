@@ -9,7 +9,7 @@
         <h1>Crear Detalle de Venta</h1>
         <br>
 
-        <!-- Verificar si hay mensajes de error o éxito -->
+      
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

@@ -1,18 +1,20 @@
 @extends('dashboard.master')
-@section('titulo','Categorias')
-@include('layouts/navigation')
+@section('titulo','Categorías')
+
 @section('contenido')
-<main>
-    <div>
-    <h1>Listado de Categorias</h1>
+
+@include('layouts/navigation')
+
+<div class="container py-4">
+    <h1>Listado de Categorías</h1>
     <br>
-    <a href="{{url('dashboard/category/create')}}" class="btn btn-success">Nueva Categoria</a> 
+    <a href="{{url('dashboard/category/create')}}" class="btn btn-success">Nueva Categoría</a> 
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th>Id Categoria</th>
+                <th>Id Categoría</th>
                 <th>Nombre</th>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <th>Estado</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
@@ -24,28 +26,19 @@
                 <td scope="row">{{$category->id}}</td>
                 <td>{{$category->name}}</td>
                 <td>{{$category->description}}</td>
-                <td>{{$category->state?_('activo') : _('inactivo')}}</td>
-                <td><a href="{{url('dashboard/category/'.$category->id.'/edit')}}" class="btn btn-warning btn-sm">Editar</a>
+                <td>{{$category->state ? 'activo' : 'inactivo'}}</td>
+                <td><a href="{{url('dashboard/category/'.$category->id.'/edit')}}" class="btn btn-warning btn-sm">Editar</a></td>
                 <td>
-                 <form action= "{{ url('dashboard/category/'.$category->id) }}" method="post">
-                     @method("DELETE")
-                     @csrf
-                     <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
-                 </form>
-            </td>
-        </tr>
-        <tr>
-                <td scope="row"></td>
-                <td></td>
-                <td></td>
+                    <form action="{{ url('dashboard/category/'.$category->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger btn-sm" type="submit">Borrar</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-
-
-    </div>
-
-</main>
+</div>
 
 @endsection

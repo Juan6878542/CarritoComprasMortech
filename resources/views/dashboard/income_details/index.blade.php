@@ -4,17 +4,18 @@
 
 @include('layouts.navigation')
 
+@section('contenido')
 <main>
-    <div>
+    <div class="container py-4">
         <h1>Listado de Detalles de Ingresos</h1>
         <br>
-        <a href="{{route('income_details.create') }}" class="btn btn-success">Nuevo Registro</a>
+        <a href="{{ route('income_details.create') }}" class="btn btn-success">Nuevo Registro</a>
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Ingreso ID</th>
-                    <th>Articulo ID</th>
+                    <th>Artículo ID</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
                     <th>Editar</th>
@@ -30,7 +31,7 @@
                     <td>{{ $detail->quantity }}</td>
                     <td>{{ $detail->price }}</td>
                     <td>
-                        <a href="{{ route('income_details.edit', $detail->id) }}"  class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ route('income_details.edit', $detail->id) }}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
                     <td>
                         <form action="{{ route('income_details.destroy', $detail->id) }}" method="post" style="display:inline;">
@@ -45,3 +46,4 @@
         </table>
     </div>
 </main>
+@endsection
